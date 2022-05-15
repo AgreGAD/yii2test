@@ -9,7 +9,7 @@
 
 use app\models\History;
 use app\widgets\Export\Export;
-use app\widgets\HistoryList\helpers\HistoryListHelper;
+use app\components\HistoryBodyFormatter\HistoryBodyFormatter;
 
 $filename = 'history';
 $filename .= '-' . time();
@@ -47,7 +47,10 @@ ini_set('memory_limit', '2048M');
         [
             'label' => Yii::t('app', 'Message'),
             'value' => function (History $model) {
-                return strip_tags(HistoryListHelper::getBodyByModel($model));
+                /** @var HistoryBodyFormatter $formatter */
+                $formatter = Yii::$container->get(HistoryBodyFormatter::class);
+
+                return strip_tags($formatter->format($model));
             }
         ]
     ],
