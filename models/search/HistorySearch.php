@@ -13,17 +13,11 @@ use yii\data\ActiveDataProvider;
  */
 class HistorySearch extends History
 {
-    /**
-     * @inheritdoc
-     */
-    public function rules()
+    public function rules(): array
     {
         return [];
     }
 
-    /**
-     * @inheritdoc
-     */
     public function scenarios()
     {
         // bypass scenarios() implementation in the parent class
